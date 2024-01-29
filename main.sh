@@ -1,5 +1,18 @@
 #! /bin/bash
 
+#-------------------------------------------------------check executable C----------------------------------------------------------#
+
+executable_prgc="prgc"
+
+if [ ! -x "$executable_prgc" ]; then #condition to check if C program executable exists
+	echo 'executable creation' 
+	gcc -o "$executable_prgc" prgc.c #executable creation
+	if [ $? -ne 0 ]; then #condition to check if compilation succeeds
+		echo 'Compilation ERROR'
+		exit
+	fi
+fi 	
+
 #--------------------------------------------------check temp and images files-------------------------------------------------------#
 
 dossier_temp="temp"
@@ -17,11 +30,11 @@ fi
 
 #---------------------------------------------------------check string---------------------------------------------------------------#
 
-start_time=$(date +%s)
+start_time=$(date +%s) #takes the current date
 
 if [ ! -f $1 ]; then #condition to check if 1st string is valid
 	echo 'ERROR, 1st string is not a valid file path.'
-	echo -e "\nTotal treatment time : $(( $(date +%s) - start_time )) seconds"
+	echo -e "\nTotal treatment time : $(( $(date +%s) - start_time )) seconds" #displays total treatment time if there is an error
 	exit
 fi
 
@@ -97,4 +110,4 @@ done
 
 end_time=$(date +%s)
 
-echo -e "\nTotal treatment time : $(( end_time - start_time )) seconds"
+echo -e "\nTotal treatment time : $(( end_time - start_time )) seconds" #displays total treatment time
