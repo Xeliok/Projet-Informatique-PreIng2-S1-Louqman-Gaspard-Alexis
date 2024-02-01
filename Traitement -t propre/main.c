@@ -36,7 +36,7 @@ int main(void) {
     AVL *pArbre = NULL;
     AVL* caseMax = NULL;
     printf("good\n");
-    fichier = fopen("/Users/louqmanba/Documents/Cours/Préing 2/Informatique/Projet/data.csv", "r");
+    fichier = fopen("data.csv", "r");
     if (fichier == NULL) {
         printf("Erreur, fichier non chargé\n");
     }
