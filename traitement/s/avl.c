@@ -16,7 +16,7 @@ int min(int a, int b) { //Fonction qui renvoie le plus petit des deux entiers
   }
 }
 
-AVL *rotationGauche(AVL *a) {
+AVL *rotationGauche(AVL *a) { //Fonction qui effectue la rotation gauche dans un AVL
   AVL *pivot = a->FDroit;
   a->FDroit = pivot->FGauche;
   pivot->FGauche = a;
@@ -28,7 +28,7 @@ AVL *rotationGauche(AVL *a) {
   return a;
 }
 
-AVL *rotationDroite(AVL *a) {
+AVL *rotationDroite(AVL *a) { //Fonction qui effectue la rotation droite dans un AVL
   AVL *pivot = a->FGauche;
   a->FGauche = pivot->FDroit;
   pivot->FDroit = a;
@@ -40,17 +40,17 @@ AVL *rotationDroite(AVL *a) {
   return a;
 }
 
-AVL *doubleRotationGauche(AVL *a) {
+AVL *doubleRotationGauche(AVL *a) { //Fonction qui effectue la double rotation gauche dans un AVL
   a->FDroit = rotationDroite(a->FDroit);
   return rotationGauche(a);
 }
 
-AVL *doubleRotationDroite(AVL *a) {
+AVL *doubleRotationDroite(AVL *a) { //Fonction qui effectue la double rotation droite dans un AVL
   a->FGauche = rotationGauche(a->FGauche);
   return rotationDroite(a);
 }
 
-AVL *equilibrerAVL(AVL *a) {
+AVL *equilibrerAVL(AVL *a) { //Fonction d'équilibrage de l'AVL
   if (a->e >= 2) {
     if (a->FDroit->e >= 0) {
       return rotationGauche(a);
@@ -67,7 +67,7 @@ AVL *equilibrerAVL(AVL *a) {
   return a;
 }
 
-void liberationMemoire(AVL* pArbre){
+void liberationMemoire(AVL* pArbre){ //Fonction de libération de la mémoire allouée
     if(pArbre != NULL){
         liberationMemoire(pArbre->FDroit);
         liberationMemoire(pArbre->FGauche);
@@ -76,7 +76,7 @@ void liberationMemoire(AVL* pArbre){
     }
 }
 
-AVL *creerArbre(int routeid, float temp) {
+AVL *creerArbre(int routeid, float temp) { //Fonction d'initialisation d'un noeud de l'arbre
   AVL *a = NULL;
   a = malloc(sizeof(AVL));
   VilleDataP v = initVilleData(routeid, temp);
@@ -87,7 +87,7 @@ AVL *creerArbre(int routeid, float temp) {
   return a;
 }
 
-AVL *comparaison(AVL *a, int routeid, float temp) {
+AVL *comparaison(AVL *a, int routeid, float temp) { //Fonction qui modifie les valeurs maximum ou minimum, et met a jour la somme de la moyenne en fonction de la valeur passée en argument 
   if (temp < a->pVilleData->dist_min) {
     a->pVilleData->dist_min = temp;
   }
@@ -102,7 +102,7 @@ AVL *comparaison(AVL *a, int routeid, float temp) {
   return a;
 }
 
-AVL *insertionAVL(AVL *a, int routeid, float temp, int *h) {
+AVL *insertionAVL(AVL *a, int routeid, float temp, int *h) { //Fonction qui insere une valeur dans l'avl
   if (a == NULL) {
     *h = 1;
     return creerArbre(routeid, temp);
