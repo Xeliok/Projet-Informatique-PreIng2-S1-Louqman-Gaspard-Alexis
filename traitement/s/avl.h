@@ -9,16 +9,16 @@ typedef struct {
   int total_stepid;
   float moyenne;
   float maxmin;
-} VilleData;
+} VilleData; // Structure qui stocke les informations relatives à chaque ville du fichier
 
 typedef struct arbre {
   VilleData *pVilleData;
   struct arbre *FGauche;
   struct arbre *FDroit;
   int e;
-} AVL;
+} AVL; // Structure des noeuds de l'AVL
 
-int max(int a, int b);
+int max(int a, int b); 
 
 int min(int a, int b);
 
