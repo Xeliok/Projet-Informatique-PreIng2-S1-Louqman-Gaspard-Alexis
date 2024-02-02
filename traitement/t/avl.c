@@ -201,24 +201,23 @@ short recherche(AVL_ID* a, short route_ID) {
     }
 }
 
-AVL *insertionAVL(AVL *a, float key, char *ville, short cas, short *h, short route_ID) {
-    short* j = malloc(sizeof(short));
+AVL *insertionAVL(AVL *a, float key, char *ville, short cas, short *h, short route_ID, int* j) {
     if (a == NULL) {
         *h = 1;
         return creerArbre(key, ville, cas, route_ID);
     }
     else if (key < a->pVilleData->key) {
-        a->FGauche = insertionAVL(a->FGauche, key, ville, cas, h, route_ID);
+        a->FGauche = insertionAVL(a->FGauche, key, ville, cas, h, route_ID, j);
         *h = -*h;
     }
     else if (key > a->pVilleData->key) {
-        a->FDroit = insertionAVL(a->FDroit, key, ville, cas, h, route_ID);
+        a->FDroit = insertionAVL(a->FDroit, key, ville, cas, h, route_ID, j);
     }
     else {
         *h = 0;
         if(key == a->pVilleData->key && strcmp(ville,a->pVilleData->ville) != 0){
             key += 0.5;
-            a = insertionAVL(a, key, ville, cas, h, route_ID);
+            a = insertionAVL(a, key, ville, cas, h, route_ID, j);
         }
         else{
             if(!recherche(a->pVilleData->id_passe, route_ID)){
@@ -280,6 +279,7 @@ AVL *extractionDonnees(FILE *pFichier) {
     short num_route;
     short numID;
     short *h = malloc(sizeof(short *));
+    short *j = malloc(sizeof(short *));
     float key;
     char *townA = malloc(sizeof(char) * MAX_LINE_LENGTH);
     char *townB = malloc(sizeof(char) * MAX_LINE_LENGTH);
@@ -296,18 +296,18 @@ AVL *extractionDonnees(FILE *pFichier) {
             token = strtok(NULL, ";");
             strcpy(townA, token);
             key = crypt(townA);
-            pArbre = insertionAVL(pArbre, key, townA, 1, h, num_route);
+            pArbre = insertionAVL(pArbre, key, townA, 1, h, num_route, j);
             token = strtok(NULL, ";");
             strcpy(townB, token);
             key = crypt(townB);
-            pArbre = insertionAVL(pArbre, key, townB, 0, h, num_route);
+            pArbre = insertionAVL(pArbre, key, townB, 0, h, num_route, j);
         }
         else {
             strtok(NULL, ";");
             token = strtok(NULL, ";");
             strcpy(townB, token);
             key = crypt(townB);
-            pArbre = insertionAVL(pArbre, key, townB, 0, h, num_route);
+            pArbre = insertionAVL(pArbre, key, townB, 0, h, num_route, j);
         }
         line = fgets(line, MAX_LINE_LENGTH, pFichier);
     }
