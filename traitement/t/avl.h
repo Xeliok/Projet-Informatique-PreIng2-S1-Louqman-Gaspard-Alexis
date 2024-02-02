@@ -9,7 +9,7 @@ typedef struct arbreID{
     struct arbreID* FGauche;
     struct arbreID* FDroit;
     short e;
-} AVL_ID;
+} AVL_ID; //Structure qui stocke la liste des trajets pour lesquels une itération de la ville a déjà été enregistrée (toutes les fonctions dont les noms sont identique à celles de la structure AVL avec ID à la fin font la même chose pour cette structure)
 
 typedef struct {
     float key;
@@ -17,14 +17,14 @@ typedef struct {
     short depart;
     char *ville;
     AVL_ID* id_passe;
-} VilleData;
+} VilleData; //Structure qui stocke toutes les informations propre a chaque ville (la présence de key nous permet de baser notre AVL sur une clé numérique propre a chaque ville)
 
 typedef struct arbre {
     VilleData *pVilleData;
     struct arbre *FGauche;
     struct arbre *FDroit;
     short e;
-} AVL;
+} AVL; //Structure qui stocke les informations sur chaque ville (la valeur utilisée pour déterminer le positionement dans l'AVL est key de VilleData)
 
 
 short max(short a, short b);
