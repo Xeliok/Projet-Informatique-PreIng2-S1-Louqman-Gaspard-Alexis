@@ -201,7 +201,7 @@ short recherche(AVL_ID* a, short route_ID) {
     }
 }
 
-AVL *insertionAVL(AVL *a, float key, char *ville, short cas, short *h, short route_ID, int* j) {
+AVL *insertionAVL(AVL *a, float key, char *ville, short cas, short *h, short route_ID, short* j) {
     if (a == NULL) {
         *h = 1;
         return creerArbre(key, ville, cas, route_ID);
