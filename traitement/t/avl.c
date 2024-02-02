@@ -311,6 +311,10 @@ AVL *extractionDonnees(FILE *pFichier) {
         }
         line = fgets(line, MAX_LINE_LENGTH, pFichier);
     }
+    free(h);
+    free(j);
+    free(townB);
+    free(townA);
     return pArbre;
 }
 
