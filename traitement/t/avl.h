@@ -55,7 +55,7 @@ AVL *creerArbre(float key, char *ville, short cas, short route_ID);
 
 AVL_ID *creerArbre_ID(short routeID);
 
-AVL *insertionAVL(AVL *a, float key, char *ville, short cas, short *h, short route_ID);
+AVL *insertionAVL(AVL *a, float key, char *ville, short cas, short *h, short route_ID, short* j);
 
 AVL_ID *insertionAVL_ID(AVL_ID *a, short route_ID, short *h);
 
