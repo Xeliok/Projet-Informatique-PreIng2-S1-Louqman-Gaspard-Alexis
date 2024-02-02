@@ -1,6 +1,6 @@
 #include "main.h"
 
-VilleDataP initVilleData(int routeid, float temp) {
+VilleDataP initVilleData(int routeid, float temp) { // Fonction qui initialise un pointeur vers une structure VilleData, avec les valeurs passées en paramètre.
   VilleDataP V = NULL;
   V = malloc(sizeof(VilleData));
   V->route_id = routeid;
@@ -13,7 +13,7 @@ VilleDataP initVilleData(int routeid, float temp) {
   return V;
 }
 
-AVL *extractionDonnees(FILE *pFichier) {
+AVL *extractionDonnees(FILE *pFichier) { // Fonction qui parcourt le fichier et permet de stocker les informations dans un AVL
   AVL *pArbre = NULL;
   char *line;
   char *Step_id;
@@ -39,7 +39,7 @@ AVL *extractionDonnees(FILE *pFichier) {
   return pArbre;
 }
 
-AVL *maxmin(AVL *pArbre) {
+AVL *maxmin(AVL *pArbre) { //Fonction qui retourne un pointeur sur le noeud de l'AVL avec la plus grande valeur de max-min
   if (pArbre == NULL) {
     return NULL;
   }
