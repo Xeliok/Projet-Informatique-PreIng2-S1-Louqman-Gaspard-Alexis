@@ -1,6 +1,6 @@
 #include "main.h"
 
-int max(int a, int b) {
+int max(int a, int b) { //Fonction qui renvoie le plus grand des deux entiers
   if (a > b) {
     return a;
   } else {
@@ -8,7 +8,7 @@ int max(int a, int b) {
   }
 }
 
-int min(int a, int b) {
+int min(int a, int b) { //Fonction qui renvoie le plus petit des deux entiers
   if (a < b) {
     return a;
   } else {
