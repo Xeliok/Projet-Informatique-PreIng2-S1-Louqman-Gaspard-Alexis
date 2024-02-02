@@ -2,7 +2,7 @@
 
 
 
-VilleDataP initVilleData(float villeid, char *Ville, short route_ID) {
+VilleDataP initVilleData(float villeid, char *Ville, short route_ID) { // Fonction qui initialise un pointeur vers une structure VilleData, avec les valeurs passées en paramètre.
     VilleDataP V = NULL;
     V = malloc(sizeof(VilleData));
     V->key = villeid;
@@ -17,7 +17,7 @@ VilleDataP initVilleData(float villeid, char *Ville, short route_ID) {
 
 
 
-float crypt(char *ville) {
+float crypt(char *ville) { // Fonction qui renvoie une clé basée sur la ville passée en commentaire (en cas de doublon de clé, pour des villes différentes, on rajoute 0,5 dans la fonction d'insertion afin d'éviter deux villes stockées dans le même noeud)
     float key = 0;
     if (ville == NULL) {
         exit(2);
