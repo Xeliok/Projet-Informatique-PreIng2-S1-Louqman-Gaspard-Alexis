@@ -2,7 +2,7 @@
 
 
 
-short max(short a, short b) {
+short max(short a, short b) { //Fonction qui renvoie le plus grand des deux entiers
     if (a > b) {
         return a;
     }
@@ -11,7 +11,7 @@ short max(short a, short b) {
     }
 }
 
-short min(short a, short b) {
+short min(short a, short b) { //Fonction qui renvoie le plus petit des deux entiers
     if (a < b) {
         return a;
     }
@@ -20,7 +20,7 @@ short min(short a, short b) {
     }
 }
 
-AVL *rotationGauche(AVL *a) {
+AVL *rotationGauche(AVL *a) { //Fonction qui effectue la rotation gauche dans un AVL
     AVL *pivot = a->FDroit;
     a->FDroit = pivot->FGauche;
     pivot->FGauche = a;
@@ -44,7 +44,7 @@ AVL_ID *rotationGauche_ID(AVL_ID *a) {
     return a;
 }
 
-AVL *rotationDroite(AVL *a) {
+AVL *rotationDroite(AVL *a) { //Fonction qui effectue la rotation droite dans un AVL
     AVL *pivot = a->FGauche;
     a->FGauche = pivot->FDroit;
     pivot->FDroit = a;
@@ -68,7 +68,7 @@ AVL_ID *rotationDroite_ID(AVL_ID *a) {
     return a;
 }
 
-AVL *doubleRotationGauche(AVL *a) {
+AVL *doubleRotationGauche(AVL *a) { //Fonction qui effectue la double rotation gauche dans un AVL
     a->FDroit = rotationDroite(a->FDroit);
     return rotationGauche(a);
 }
@@ -78,7 +78,7 @@ AVL_ID *doubleRotationGauche_ID(AVL_ID *a) {
     return rotationGauche_ID(a);
 }
 
-AVL *doubleRotationDroite(AVL *a) {
+AVL *doubleRotationDroite(AVL *a) { //Fonction qui effectue la double rotation droite dans un AVL
     a->FGauche = rotationGauche(a->FGauche);
     return rotationDroite(a);
 }
@@ -88,7 +88,7 @@ AVL_ID *doubleRotationDroite_ID(AVL_ID *a) {
     return rotationDroite_ID(a);
 }
 
-AVL *equilibrerAVL(AVL *a) {
+AVL *equilibrerAVL(AVL *a) { //Fonction d'équilibrage de l'AVL
     if (a->e >= 2) {
         if (a->FDroit->e >= 0) {
             return rotationGauche(a);
@@ -128,7 +128,7 @@ AVL_ID *equilibrerAVL_ID(AVL_ID *a) {
     return a;
 }
 
-AVL *creerArbre(float key, char *ville, short cas, short route_ID) {
+AVL *creerArbre(float key, char *ville, short cas, short route_ID) { //Fonction d'initialisation d'un noeud de l'arbre
     AVL *a = NULL;
     a = malloc(sizeof(AVL));
     VilleDataP v = initVilleData(key, ville, route_ID);
@@ -157,7 +157,7 @@ AVL_ID *creerArbre_ID(short routeID) {
     return a;
 }
 
-AVL_ID *insertionAVL_ID(AVL_ID *a, short route_ID, short *h) {
+AVL_ID *insertionAVL_ID(AVL_ID *a, short route_ID, short *h) { 
     if (a == NULL) {
         *h = 1;
         return creerArbre_ID(route_ID);
@@ -186,9 +186,9 @@ AVL_ID *insertionAVL_ID(AVL_ID *a, short route_ID, short *h) {
     return a;
 }
 
-short recherche(AVL_ID* a, short route_ID) {
+short recherche(AVL_ID* a, short route_ID) { //Fonction qui verifie la présence de la valeur donnée en commentaire dans l'AVL
     if (a == NULL) {
-        return 0; // La valeur n'est pas présente dans l'arbre
+        return 0;
     }
     if (route_ID < a->Route_ID) {
         return recherche(a->FGauche, route_ID);
@@ -201,7 +201,7 @@ short recherche(AVL_ID* a, short route_ID) {
     }
 }
 
-AVL *insertionAVL(AVL *a, float key, char *ville, short cas, short *h, short route_ID, short* j) {
+AVL *insertionAVL(AVL *a, float key, char *ville, short cas, short *h, short route_ID, short* j) { //Fonction qui insere une valeur dans l'avl
     if (a == NULL) {
         *h = 1;
         return creerArbre(key, ville, cas, route_ID);
@@ -260,7 +260,7 @@ void liberationRouteID(AVL_ID* pArbreID){
     }
 }
 
-void liberationMemoire(AVL* pArbre){
+void liberationMemoire(AVL* pArbre){ //Fonction de libération de la mémoire allouée
     if(pArbre != NULL){
         liberationMemoire(pArbre->FDroit);
         liberationMemoire(pArbre->FGauche);
@@ -271,7 +271,7 @@ void liberationMemoire(AVL* pArbre){
     }
 }
 
-AVL *extractionDonnees(FILE *pFichier) {
+AVL *extractionDonnees(FILE *pFichier) { // Fonction qui parcourt le fichier et permet de stocker les informations dans un AVL
     AVL *pArbre = NULL;
     char *line;
     char *Step_id;
@@ -318,7 +318,7 @@ AVL *extractionDonnees(FILE *pFichier) {
     return pArbre;
 }
 
-AVL* MaxPassage(AVL *pArbre) {
+AVL* MaxPassage(AVL *pArbre) { //Fonction qui renvoie une pointeur sur le noeud de l'AVL avec le nombre de passage le plus élevé
     if (pArbre == NULL) {
         return NULL;
     }
